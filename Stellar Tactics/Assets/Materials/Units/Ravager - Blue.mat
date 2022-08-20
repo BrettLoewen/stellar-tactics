@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Big Alien
+  m_Name: Ravager - Blue
   m_Shader: {fileID: -6465566751694194690, guid: 674268ce0719b0f44a73dcf49d6003e5,
     type: 3}
   m_Parent: {fileID: 0}
@@ -178,14 +178,14 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Decal_Color: {r: 1, g: 0, b: 0.010315895, a: 1}
+    - _Decal_Color: {r: 0, g: 0.10378075, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Extra_1_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
     - _Extra_2_Color: {r: 0.8862745, g: 0.44240505, b: 0.13725488, a: 1}
     - _Extra_3_Color: {r: 0.3773585, g: 0.35081, b: 0.08330365, a: 1}
     - _Extra_4_Color: {r: 1, g: 0.8127217, b: 0.72075474, a: 1}
     - _Primary_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
-    - _Secondary_Color: {r: 0.5849056, g: 0.16774648, b: 0.16774648, a: 1}
+    - _Secondary_Color: {r: 0.16862743, g: 0.26607472, b: 0.58431375, a: 1}
     - _Skin_1_Color: {r: 0.7176471, g: 0.6194879, b: 0.28627452, a: 1}
     - _Skin_2_Color: {r: 0.54901963, g: 0.47561952, b: 0.17254902, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

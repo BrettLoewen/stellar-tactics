@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3999535572250880474}
   - component: {fileID: 6633091996947255088}
   m_Layer: 15
-  m_Name: Unit Ragdoll
+  m_Name: Proto - Ragdoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

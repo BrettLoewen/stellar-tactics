@@ -35,16 +35,20 @@ public class TransformSyncer : MonoBehaviour
     [ContextMenu("Sync To Target")]
     private void SyncToTarget()
     {
-        //If syncPosition is on, match position with the target
-        if(syncPosition)
+        //If there is a target transform to sync to
+        if(target != null)
         {
-            transform.position = target.position;
-        }
+            //If syncPosition is on, match position with the target
+            if (syncPosition)
+            {
+                transform.position = target.position;
+            }
 
-        //If syncRotaton is on, match rotation with the target
-        if(syncRotation)
-        {
-            transform.rotation = target.rotation;
+            //If syncRotaton is on, match rotation with the target
+            if (syncRotation)
+            {
+                transform.rotation = target.rotation;
+            }
         }
     }//end SyncToTarget
 }

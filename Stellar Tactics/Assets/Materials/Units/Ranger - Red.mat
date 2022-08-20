@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Space Soldier Enemy
+  m_Name: Ranger - Red
   m_Shader: {fileID: -6465566751694194690, guid: 674268ce0719b0f44a73dcf49d6003e5,
     type: 3}
   m_Parent: {fileID: 0}
@@ -96,7 +96,7 @@ Material:
     - _Extra_2_Color: {r: 0.13333334, g: 0.19607843, b: 0.75686276, a: 1}
     - _Extra_3_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Extra_4_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Primary_Color: {r: 0.754717, g: 0.23674522, b: 0.23068707, a: 1}
+    - _Primary_Color: {r: 0.78431374, g: 0.23674515, b: 0.23529412, a: 1}
     - _Secondary_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
     - _Skin_1_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Skin_2_Color: {r: 0, g: 0, b: 0, a: 0}
