@@ -100,7 +100,7 @@ Transform:
   - {fileID: 1874631576336975651}
   - {fileID: 1874631577068856008}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1874631577845936763
 BoxCollider:
@@ -155,8 +155,9 @@ MonoBehaviour:
   maxHealth: 1
   isDestructible: 1
   destroyedPrefab: {fileID: 0}
-  destructibleRenderer: {fileID: 1898073506661917746}
-  secondDestructibleRenderer: {fileID: 3184611451921614879}
+  destructibleRenderers:
+  - {fileID: 1898073506661917746}
+  - {fileID: 3184611451921614879}
   destructibleHightlightMaterial: {fileID: 2100000, guid: 817125f66564beb41b8fa35daf7b9c98,
     type: 2}
 --- !u!114 &7522545315008196100

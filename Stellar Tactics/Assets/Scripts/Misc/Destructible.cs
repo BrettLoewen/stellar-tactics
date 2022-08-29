@@ -22,10 +22,9 @@ public class Destructible : MonoBehaviour
 
     [SerializeField] private Transform destroyedPrefab;     //Will be spawned when this object is destroyed (if null, nothing happens)
 
-    [SerializeField] private Renderer destructibleRenderer;             //The main Renderer of the object's graphics
-    [SerializeField] private Renderer secondDestructibleRenderer;       //A secondary Renderer of the object's graphics (incase it is needed)
-    [SerializeField] private Material destructibleHightlightMaterial;   //A special material which the Renderers will switch to when being highlighted
-    private Material normalMaterial;                                    //Stores the normal material so it can be switched back to after highlighting completes
+    [SerializeField] protected Renderer[] destructibleRenderers;                //The Renderers of the object's graphics
+    [SerializeField] private Material destructibleHightlightMaterial;           //A special material which the Renderers will switch to when being highlighted
+    protected Material normalMaterial;                                          //Stores the normal material so it can be switched back to after highlighting completes
 
     #endregion //end Variables
 
@@ -38,9 +37,9 @@ public class Destructible : MonoBehaviour
         currentHealth = maxHealth;
 
         //If the main Renderer is not null, get the normal material from it
-        if(destructibleRenderer != null)
+        if(destructibleRenderers != null && destructibleRenderers.Length > 0)
         {
-            normalMaterial = destructibleRenderer.material;
+            normalMaterial = destructibleRenderers[0].material;
         }
     }//end Awake
 
@@ -49,46 +48,44 @@ public class Destructible : MonoBehaviour
     #region Manage Highlight
 
     /// <summary>
-    /// Make all valid Renderers switch to the highlight material
+    /// Make all Renderers switch to the highlight material
     /// </summary>
     public void ShowDestructibleHighlight()
     {
         //If there is a highlight material to switch to
         if(destructibleHightlightMaterial != null)
         {
-            //If the main Renderer exists
-            if(destructibleRenderer != null)
+            //If the array of Renderers exists
+            if(destructibleRenderers != null)
             {
-                //Make the main Renderer switch to the highlight material
-                destructibleRenderer.material = destructibleHightlightMaterial;
-            }
-
-            //If the secondary Renderer exists
-            if(secondDestructibleRenderer != null)
-            {
-                //Make the secondary Renderer switch to the highlight material
-                secondDestructibleRenderer.material = destructibleHightlightMaterial;
+                //Loop through the array of Renderers
+                for (int i = 0; i < destructibleRenderers.Length; i++)
+                {
+                    //Make the Renderer switch to the highlight material
+                    destructibleRenderers[i].material = destructibleHightlightMaterial;
+                }
             }
         }
     }//end ShowDestructibleHighlight
 
     /// <summary>
-    /// Make all valid Renderers switch to the normal material
+    /// Make all Renderers switch to the normal material
     /// </summary>
     public void HideDestructibleHighlight()
     {
-        //If the main Renderer exists
-        if (destructibleRenderer != null)
+        //If the array of Renderers exists
+        if (destructibleRenderers != null)
         {
-            //Make the main Renderer switch to the normal material
-            destructibleRenderer.material = normalMaterial;
-        }
-
-        //If the secondary Renderer exists
-        if (secondDestructibleRenderer != null)
-        {
-            //Make the secondary Renderer switch to the normal material
-            secondDestructibleRenderer.material = normalMaterial;
+            //Loop through the array of Renderers
+            for (int i = 0; i < destructibleRenderers.Length; i++)
+            {
+                //
+                if(destructibleRenderers[i] != null)
+                {
+                    //Make the Renderer switch to the normal material
+                    destructibleRenderers[i].material = normalMaterial;
+                }
+            }
         }
     }//end HideDestructibleHighlight
 

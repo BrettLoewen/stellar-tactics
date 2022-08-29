@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 3999535572250880475, guid: c51496c1d90c0024b9bcefb4cb929e81,
         type: 3}
       propertyPath: m_Name
-      value: Unit - Enemy
+      value: Proto - Unit - Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3999535572250880477, guid: c51496c1d90c0024b9bcefb4cb929e81,
         type: 3}
@@ -84,6 +84,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6999830038930988398, guid: 6bdfc4f217f9910459d14e9e57a76c81,
         type: 3}
+    - target: {fileID: 3999535572250880477, guid: c51496c1d90c0024b9bcefb4cb929e81,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999535572250880477, guid: c51496c1d90c0024b9bcefb4cb929e81,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 4517937174026262995}
+    - target: {fileID: 3999535572250880477, guid: c51496c1d90c0024b9bcefb4cb929e81,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 8735376557684836298}
+    - target: {fileID: 3999535572751508054, guid: c51496c1d90c0024b9bcefb4cb929e81,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.79963195
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999535572751508054, guid: c51496c1d90c0024b9bcefb4cb929e81,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.034173787
+      objectReference: {fileID: 0}
     - target: {fileID: 6350655566051606361, guid: c51496c1d90c0024b9bcefb4cb929e81,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -92,3 +117,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: c51496c1d90c0024b9bcefb4cb929e81, type: 3}
+--- !u!137 &4517937174026262995 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6350655566051606361, guid: c51496c1d90c0024b9bcefb4cb929e81,
+    type: 3}
+  m_PrefabInstance: {fileID: 7390653808038307466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8735376557684836298 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2281823942993158464, guid: c51496c1d90c0024b9bcefb4cb929e81,
+    type: 3}
+  m_PrefabInstance: {fileID: 7390653808038307466}
+  m_PrefabAsset: {fileID: 0}

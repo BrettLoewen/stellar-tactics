@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 473403456222513389}
   - component: {fileID: 473403456222513388}
   - component: {fileID: 473403456222513386}
+  - component: {fileID: 6314295872647310985}
   m_Layer: 20
   m_Name: Obstacle - Crate
   m_TagString: Untagged
@@ -63,9 +64,25 @@ MonoBehaviour:
   isDestructible: 1
   destroyedPrefab: {fileID: 2146544188776652630, guid: 128a4072f653ec443a0bb245f705c1af,
     type: 3}
-  destructibleRenderer: {fileID: 487364946037847185}
+  destructibleRenderers:
+  - {fileID: 487364946037847185}
   destructibleHightlightMaterial: {fileID: 2100000, guid: 817125f66564beb41b8fa35daf7b9c98,
     type: 2}
+--- !u!114 &6314295872647310985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473403456222513391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481faa53ab9672d4fad1996b990835d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 487364946037847185}
+  colliders: []
 --- !u!1001 &473403456045173315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,7 +159,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 40347e2344b3ed04a8165ea238a93a0b, type: 2}
+      objectReference: {fileID: 2100000, guid: e40c19171e277554ca2ec4dafe5357b5, type: 2}
     m_RemovedComponents:
     - {fileID: 64066660036517890, guid: e082979a473bb914ab8af10a5d754993, type: 3}
     m_AddedGameObjects: []

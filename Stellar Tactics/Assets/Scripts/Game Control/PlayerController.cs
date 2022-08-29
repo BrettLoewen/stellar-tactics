@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 //BUGS
 //If Unit dies while selected, selectedUnit becomes null. Solution: deselect Units when they die
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : UnitController
 {
     #region Variables
 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     #region Unity Control Methods
 
-    private void Awake()
+    protected override void Awake()
     {
         //If Instance does not exist yet, this instance should be the Instance
         if(Instance == null)
@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("More than one PlayerController in the scene " + transform + " - " + Instance);
         }
+
+        base.Awake();
+
+        SpawnUnits();
     }//end Awake
 
     private void Start()
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
         pathRenderer.Disable();
 
         //
-        SetSelectedUnit(selectedUnit);
+        SetSelectedUnit(units[0]);
     }//end Start
 
     private void Update()
@@ -74,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //If it is not my turn, do nothing
-        if(!GameManager.Instance.IsPlayerTurn())
+        if(GameManager.Instance.IsMyTurn(teamID) == false)
         {
             return;
         }
@@ -104,6 +108,12 @@ public class PlayerController : MonoBehaviour
         HandleSelectedAction();
     }//end Update
 
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
     #endregion //end Unity Control Methods
 
     #region Unit Selection
@@ -132,7 +142,7 @@ public class PlayerController : MonoBehaviour
                 if (collider.TryGetComponent(out Unit unit))
                 {
                     //Can only select a unit that is on the player's team
-                    if(unit.IsEnemy() == false)
+                    if(unit.GetTeamID() == teamID)
                     {
                         //Can only select a new unit
                         if (unit.Equals(selectedUnit) == false)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileLinkType { Walk, Wall }
+public enum TileLinkType { Walk, Wall, Ladder, Vault, LongVault }
 
 [System.Serializable]
 public class TileLink

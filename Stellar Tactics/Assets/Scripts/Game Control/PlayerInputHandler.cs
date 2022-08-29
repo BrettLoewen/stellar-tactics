@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     public static bool rightClickFlag;
     public static Vector2 moveInput;
     public static float lookInput;
+    public static float zoomInput;
 
     public static bool pauseInput;
 
@@ -74,6 +75,17 @@ public class PlayerInputHandler : MonoBehaviour
 
         lookInput = context.ReadValue<float>();
     }//end CollectLookInput
+
+    public void CollectZoomInput(InputAction.CallbackContext context)
+    {
+        //
+        if (PauseMenu.IsPaused)
+        {
+            return;
+        }
+
+        zoomInput = context.ReadValue<float>();
+    }//end CollectZoomInput
 
     public void CollectPauseInput(InputAction.CallbackContext context)
     {

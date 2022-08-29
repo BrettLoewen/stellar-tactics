@@ -19,10 +19,19 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector3 minBounds = new Vector3(-20f, 0f, -20f);
     [SerializeField] private Vector3 maxBounds = new Vector3(20f, 0f, 20f);
 
+    [SerializeField] private float zoomSpeed = 2f;
+    private float zoomPercent = 0.5f;
+    [SerializeField] private Animator cameraAnimator;
+
     [SerializeField] private GameObject actionCamera;
     private CinemachineImpulseSource cinemachineImpulseSource;
 
     private Transform focusTransform;
+
+    [SerializeField] private int obstructionSamplePoints;
+    [SerializeField] private float obstructionDetectRadius;
+    [SerializeField] private LayerMask obstructionMask;
+    private bool isPerformingAction;
 
     #endregion //end Variables
 
@@ -44,6 +53,8 @@ public class CameraController : MonoBehaviour
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
 
         focusTransform = null;
+
+        isPerformingAction = false;
     }//end Awake
 
     private void Start()
@@ -58,6 +69,9 @@ public class CameraController : MonoBehaviour
     {
         HandleRotation();
         HandleMovement();
+        HandleZoom();
+
+        HideObstructions();
     }//end Update
 
     private void OnDestroy()
@@ -67,6 +81,8 @@ public class CameraController : MonoBehaviour
     }
 
     #endregion //end Unity Control Methods
+
+    #region Handle Controls
 
     private void HandleMovement()
     {
@@ -110,11 +126,27 @@ public class CameraController : MonoBehaviour
         transform.eulerAngles += Vector3.up * (PlayerInputHandler.lookInput * rotationSpeed * Time.deltaTime);
     }//end HandleRotation
 
+    private void HandleZoom()
+    {
+        //
+        zoomPercent -= PlayerInputHandler.zoomInput * zoomSpeed * Time.deltaTime;
+
+        //
+        zoomPercent = Mathf.Clamp(zoomPercent, 0f, 1f);
+
+        //
+        cameraAnimator.SetFloat("zoomPercent", zoomPercent);
+    }//end HandleZoom
+
     
     public void SetFocus(Transform focus)
     {
         focusTransform = focus;
     }
+
+    #endregion Handle Controls
+
+    #region Getters
 
     /// <summary>
     /// Returns the point in the world that corresponds to the mouse position on the screen
@@ -148,6 +180,9 @@ public class CameraController : MonoBehaviour
         return collider;
     }//end GetColliderAtMousePosition
 
+    #endregion Getters
+
+    #region Camera Effects
 
     public void Shake(float intensity = 1f)
     {
@@ -164,8 +199,67 @@ public class CameraController : MonoBehaviour
         actionCamera.SetActive(false);
     }
 
+    private void HideObstructions()
+    {
+        //Create the start position (The position of the camera)
+        Vector3 currentPosition = mainCamera.transform.position;
+
+        //Calculate the total distance from the start position (the camera) to the end position (the controller)
+        float totalDistance = Vector3.Distance(currentPosition, transform.position);
+
+        //Calculate the distance between sample points (as a percentage from 0 to 1, ~0: lots of points, ~1: not many points)
+        float segmentLength = 1f / (obstructionSamplePoints + 1f);
+
+        //Calculate the movement direction from the camera to the controller
+        Vector3 moveDirection = (transform.position - currentPosition).normalized;
+
+        //Loop to calculate the position of all sample points
+        for (int i = 0; i <= obstructionSamplePoints; i++)
+        {
+            //Update the position using the move direction and length of a segment
+            currentPosition += moveDirection * segmentLength * totalDistance;
+
+            //Get the colliders that could be Obstructions which are near the current position
+            Collider[] colliders = Physics.OverlapSphere(currentPosition, obstructionDetectRadius, obstructionMask);
+
+            //Get the distance between the Camera and the controller
+            float distance = Vector3.Distance(transform.position, mainCamera.transform.position);
+
+            //Loop through each collider
+            foreach (Collider collider in colliders)
+            {
+                //Create a variable to hold the collider's Obstruction componenet if it exists
+                Obstruction obstruction = null;
+
+                //Try to get the Obstruction component from the collider if it exists
+                if(collider.TryGetComponent(out obstruction) == false)
+                {
+                    //If the collider did not have an Obstruction component, try to get it from the collider's parent
+                    collider.transform.parent.TryGetComponent(out obstruction);
+                }
+
+                //If an Obstruction was found
+                if(obstruction != null)
+                {
+                    //If the Obstruction is closer to the Camera than the controller is
+                    if (Vector3.Distance(mainCamera.transform.position, obstruction.transform.position) <= distance)
+                    {
+                        //Hide the Obstruction
+                        obstruction.HideObstruction(true, isPerformingAction == false);
+                    }
+                }
+            }
+        }
+    }
+
+    #endregion Camera Effects
+
+    #region Event Subscriptions
+
     private void BaseAction_OnAnyActionStarted(object sender, EventArgs e)
     {
+        isPerformingAction = true;
+
         switch(sender)
         {
             case ShootAction shootAction:
@@ -184,7 +278,6 @@ public class CameraController : MonoBehaviour
                 Vector3 shoulderOffset = Quaternion.Euler(0f, 90f, 0f) * shootDirection * shoulderOffsetAmount;
 
                 //
-                //Vector3 actionCameraPosition = shooterUnit.transform.position + cameraCharacterHeight + shoulderOffset + (shootDirection * -2f);
                 Vector3 actionCameraPosition = shooterUnit.cameraShoulderPoint.position + shoulderOffset + (shootDirection * -1f);
                 
                 //
@@ -201,6 +294,8 @@ public class CameraController : MonoBehaviour
 
     private void BaseAction_OnAnyActionCompleted(object sender, EventArgs e)
     {
+        isPerformingAction = false;
+
         switch (sender)
         {
             case ShootAction shootAction:
@@ -209,4 +304,6 @@ public class CameraController : MonoBehaviour
                 break;
         }
     }
+
+    #endregion Event Subscriptions
 }

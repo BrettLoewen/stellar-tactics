@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : UnitController
 {
     #region Variables
 
@@ -16,11 +16,15 @@ public class EnemyController : MonoBehaviour
     #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         GameManager.Instance.OnTurnChanged += GameManager_OnTurnChanged;
 
         state = State.WaitingForTurn;
+
+        SpawnUnits();
     }//end Awake
 
     // Start is called before the first frame update
@@ -32,7 +36,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.IsPlayerTurn())
+        //If it not my turn, stop
+        if(GameManager.Instance.IsMyTurn(teamID) == false)
         {
             return;
         }
@@ -61,6 +66,12 @@ public class EnemyController : MonoBehaviour
         }
     }//end Update
 
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
     #endregion //end Unity Control Methods
 
     #region
@@ -68,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
     private void GameManager_OnTurnChanged(object sender, EventArgs e)
     {
-        if(GameManager.Instance.IsPlayerTurn() == false)
+        if(GameManager.Instance.IsMyTurn(teamID))
         {
             state = State.TakingTurn;
             timer = 2f;
@@ -86,9 +97,9 @@ public class EnemyController : MonoBehaviour
     private bool TryPerformUnitAction(Action onActionComplete)
     {
         //
-        foreach(Unit enemyUnit in GameManager.Instance.GetEnemyUnitList())
+        foreach(Unit unit in units)
         {
-            if(TryPerformUnitAction(enemyUnit, onActionComplete))
+            if(TryPerformUnitAction(unit, onActionComplete))
             {
                 //A unit was able to act, so don't check any other
                 return true;

@@ -7,6 +7,7 @@ public class UnitRagdoll : MonoBehaviour
     #region Variables
 
     [SerializeField] private Transform ragdollRootBone;
+    [SerializeField] private Renderer[] renderers;
 
     #endregion //end Variables
 
@@ -34,8 +35,13 @@ public class UnitRagdoll : MonoBehaviour
 
     #region
 
-    public void Setup(Transform unitRootBone, Vector3 impactPoint)
+    public void Setup(Transform unitRootBone, Vector3 impactPoint, Material unitMaterial)
     {
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = unitMaterial;
+        }
+
         MatchAllChildTransforms(ragdollRootBone, unitRootBone);
 
         ApplyExplosion(ragdollRootBone, 300f, impactPoint, 10f);

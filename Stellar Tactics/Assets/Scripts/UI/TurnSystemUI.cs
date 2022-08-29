@@ -60,13 +60,13 @@ public class TurnSystemUI : MonoBehaviour
 
     private void UpdateEnemyTurnIndicator()
     {
-        enemyTurnIndicator.SetActive(!GameManager.Instance.IsPlayerTurn());
+        enemyTurnIndicator.SetActive(GameManager.Instance.IsMyTurn(0) == false);
     }
 
 
     private void UpdateEndTurnButtonVisibility()
     {
-        endTurnButton.gameObject.SetActive(GameManager.Instance.IsPlayerTurn());
+        endTurnButton.gameObject.SetActive(GameManager.Instance.IsMyTurn(0));
     }
 
     #endregion

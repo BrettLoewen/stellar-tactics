@@ -17,7 +17,7 @@ public class TileNavExtension : MonoBehaviour
 
     [SerializeField] private TileExtensionLink[] extensionLinks;
 
-    [SerializeField] private float tileDetectRadius;
+    [SerializeField] private float tileDetectRadius = 0.25f;
     [SerializeField] private LayerMask tileDetectMask;
 
     #endregion //end Variables

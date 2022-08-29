@@ -13,6 +13,7 @@ public class UnitData : ScriptableObject
 {
     #region Variables
 
+    public string unitName; //The name used to identify this Unit
     public Unit unitPrefab; //The prefab that will be spawned in for this Unit
 
     #endregion //end Variables

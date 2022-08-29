@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452a514468f08f545a771e9e3a05ef6f, type: 3}
   m_Name: Ranger
   m_EditorClassIdentifier: 
+  unitName: Ranger
   unitPrefab: {fileID: 6315292709356369199, guid: aec7ae19cfb62a14992c5fd7348c1e59,
     type: 3}

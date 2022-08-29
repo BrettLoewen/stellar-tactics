@@ -57,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 7172514232903588721, guid: 635219be6ef53eb4392c8428d2fe7e71,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7172514232903588721, guid: 635219be6ef53eb4392c8428d2fe7e71,
         type: 3}
@@ -116,6 +116,12 @@ PrefabInstance:
       objectReference: {fileID: 3954045272582230974}
     - target: {fileID: 7172514232903588726, guid: 635219be6ef53eb4392c8428d2fe7e71,
         type: 3}
+      propertyPath: ragdollPrefab
+      value: 
+      objectReference: {fileID: 7902615718605011281, guid: da204e39636344e4d8036a5154569f81,
+        type: 3}
+    - target: {fileID: 7172514232903588726, guid: 635219be6ef53eb4392c8428d2fe7e71,
+        type: 3}
       propertyPath: destructibleRenderer
       value: 
       objectReference: {fileID: 9191833519181479346}
@@ -124,6 +130,21 @@ PrefabInstance:
       propertyPath: secondDestructibleRenderer
       value: 
       objectReference: {fileID: 4037290960342573995}
+    - target: {fileID: 7172514232903588726, guid: 635219be6ef53eb4392c8428d2fe7e71,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172514232903588726, guid: 635219be6ef53eb4392c8428d2fe7e71,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 4037290960342573995}
+    - target: {fileID: 7172514232903588726, guid: 635219be6ef53eb4392c8428d2fe7e71,
+        type: 3}
+      propertyPath: destructibleRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 9191833519181479346}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2205333425015444344, guid: 635219be6ef53eb4392c8428d2fe7e71,

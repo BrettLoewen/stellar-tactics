@@ -244,7 +244,7 @@ public class GrenadeAction : BaseAction
     public override EnemyAIAction GetEnemyAIAction(ActionTarget target)
     {
         //Get the possible enemies to target (the Units we want to hit with a grenade)
-        List<Unit> playerUnits = GameManager.Instance.GetFriendlyUnitList();
+        List<Unit> playerUnits = GameManager.Instance.GetEnemyUnitList(unit.GetTeamID());
 
         //Get the Tile that this ActionTarget will throw a grenade to
         Tile targetTile = target.targetTile;
@@ -286,7 +286,7 @@ public class GrenadeAction : BaseAction
                     float healthPercent = unit.GetHealthNormalized();
 
                     //If the target Unit is on my team, reduce the actionValue (we don't want to hit teammates)
-                    if (unit.IsEnemy() == this.unit.IsEnemy())
+                    if (unit.IsEnemy(this.unit.GetTeamID()) == false)
                     {
                         //Reduce the actionValue
                         actionValue -= multiplier + Mathf.RoundToInt((1f - healthPercent) * multiplier);

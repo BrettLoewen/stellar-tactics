@@ -627,7 +627,7 @@ Transform:
   - {fileID: 3613405461086399589}
   - {fileID: 6007106977604695852}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2222835894989741373
 BoxCollider:
@@ -657,8 +657,9 @@ MonoBehaviour:
   maxHealth: 10
   isDestructible: 1
   destroyedPrefab: {fileID: 0}
-  destructibleRenderer: {fileID: 2281823942993158464}
-  secondDestructibleRenderer: {fileID: 6350655566051606361}
+  destructibleRenderers:
+  - {fileID: 6350655566051606361}
+  - {fileID: 2281823942993158464}
   destructibleHightlightMaterial: {fileID: 2100000, guid: 817125f66564beb41b8fa35daf7b9c98,
     type: 2}
   unitAnimator: {fileID: 3999535572431116705}
@@ -842,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3999535572751508055}
   m_LocalRotation: {x: 0.969486, y: 0.009094923, z: -0.24225926, w: 0.036396828}
-  m_LocalPosition: {x: 0.7996321, y: 1.36094, z: -0.034173965}
+  m_LocalPosition: {x: 0.79963195, y: 1.36094, z: -0.034173787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -30,7 +30,9 @@ public class Unit : Destructible
     private const int maxActionPoints = 3;          //The number of action points the Unit will start each turn with
     private int actionPoints = maxActionPoints;     //The number of action points the Unit currently has to work with
 
-    [SerializeField] private bool isEnemy;  //Stores whether or not the Unit is on the player's team or the enemy's team
+    private int teamID;
+    private TeamData teamData;
+    private UnitData unitData;
 
     [SerializeField] private Transform ragdollPrefab;   //The prefab that will be spawned when the Unit dies
     [SerializeField] private Transform rootBone;        //The root bone of the Unit's character graphic
@@ -92,6 +94,35 @@ public class Unit : Destructible
     #endregion //end Unity Control Methods
 
     #region
+
+    /// <summary>
+    /// Store the passed information about this Unit and setup its material correctly
+    /// </summary>
+    /// <param name="teamID">An integer representing the team number of this Unit</param>
+    /// <param name="teamData">A datatype used to hold information about this Unit's team</param>
+    /// <param name="unitData">A datatype used to hold infotmation about this Unit</param>
+    public void Setup(int teamID, TeamData teamData, UnitData unitData)
+    {
+        //Setup the Unit's information using the passed variables
+        this.teamID = teamID;
+        this.teamData = teamData;
+        this.unitData = unitData;
+
+        //Get the material this Unit should use
+        Material unitMaterial = teamData.GetUnitMaterial(unitData);
+        normalMaterial = unitMaterial;
+
+        //If there are Renderers to manage
+        if(destructibleRenderers != null)
+        {
+            //Loop through the array of Renderers
+            for (int i = 0; i < destructibleRenderers.Length; i++)
+            {
+                //Set the Renderer to use the found material for the passed UnitData
+                destructibleRenderers[i].material = unitMaterial;
+            }
+        }
+    }//end Setup
 
     /// <summary>
     /// Calculate the tile that this Unit is currently standing on
@@ -157,7 +188,7 @@ public class Unit : Destructible
     private void GameManager_OnTurnChanged(object sender, EventArgs e)
     {
         //If the turn changed to the owner of this unit
-        if(IsEnemy() == !GameManager.Instance.IsPlayerTurn())
+        if(GameManager.Instance.IsMyTurn(teamID))
         {
             //The Unit should reset its action points to full
             SetActionPoints(maxActionPoints);
@@ -173,6 +204,12 @@ public class Unit : Destructible
     {
         return this == other;
     }//end Equals
+
+
+    public int GetTeamID()
+    {
+        return teamID;
+    }
 
 
     public UnitAnimator GetUnitAnimator()
@@ -273,9 +310,9 @@ public class Unit : Destructible
         return canPerformAction;
     }//end TryPerformAction
 
-    public bool IsEnemy()
+    public bool IsEnemy(int otherTeamID)
     {
-        return isEnemy;
+        return teamID != otherTeamID;
     }//end IsEnemy
 
 
@@ -300,7 +337,7 @@ public class Unit : Destructible
         
         //
         UnitRagdoll ragdoll = Instantiate(ragdollPrefab, transform.position, transform.rotation).GetComponent<UnitRagdoll>();
-        ragdoll.Setup(rootBone, impactPoint);
+        ragdoll.Setup(rootBone, impactPoint, normalMaterial);
 
         //
         OnAnyUnitDied?.Invoke(this, EventArgs.Empty);

@@ -134,12 +134,12 @@ public class MeleeAction : BaseAction
             //If the Unit is not null, check if it is what makes the ActionTarget valid and act appropriately
             if (target.targetUnit != null)
             {
-                //If the target unit is on the same team as the attacker, then the Unit makes the ActionTarget valid, so get the Unit's Tile
-                if (target.targetUnit.IsEnemy() == GameManager.Instance.IsPlayerTurn())
+                //If the target unit is not on the same team as the attacker, then the Unit makes the ActionTarget valid, so get the Unit's Tile
+                if (GameManager.Instance.IsMyTurn(target.targetUnit.GetTeamID()) == false)
                 {
                     target.targetTile = target.targetUnit.GetStandingTile();
                 }
-                //If the target unit is not on the same as the attacker, then the Tile makes the ActionTarget valid, so get the Tile's Unit
+                //If the target unit is on the same as the attacker, then the Tile makes the ActionTarget valid, so get the Tile's Unit
                 else
                 {
                     target.targetUnit = target.targetTile.GetUnit();
@@ -216,7 +216,7 @@ public class MeleeAction : BaseAction
                         if (unit != null)
                         {
                             //If the Unit is on a different team than the attacker
-                            if (unit.IsEnemy() != attacker.IsEnemy())
+                            if (attacker.IsEnemy(unit.GetTeamID()))
                             {
                                 //Mark the Tile as a target for visuals
                                 tile.target = true;
