@@ -5,25 +5,14 @@ using UnityEngine;
 
 public class SpinAction : BaseAction
 {
-    #region Variables
-
     private float totalSpinAmount;
 
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
         base.Awake();
-    }//end Awake
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }//end Start
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,11 +32,7 @@ public class SpinAction : BaseAction
             PlayerController.Instance.SetSelectedAction(this);
             CompleteAction();
         }
-    }//end Update
-
-    #endregion //end Unity Control Methods
-
-    #region
+    }
 
 
     public override bool TryTakeAction(ActionTarget target, Action onActionComplete)
@@ -83,7 +68,7 @@ public class SpinAction : BaseAction
     {
         //Calculate and return the appropriate EnemyAIAction for the SpinAction
         return GetEnemyAIAction(target);
-    }//end GetBestEnemyAIAction
+    }
 
 
     public override EnemyAIAction GetEnemyAIAction(ActionTarget target)
@@ -94,7 +79,5 @@ public class SpinAction : BaseAction
             target = target,
             actionValue = 1,
         };
-    }//end GetEnemyAIAction
-
-    #endregion
+    }
 }

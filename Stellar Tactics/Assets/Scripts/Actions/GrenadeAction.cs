@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GrenadeAction : BaseAction
 {
-    #region Variables
-
     public event EventHandler OnStartThrowGrenade;      //An event to be triggered when this Action starts
     public event EventHandler OnCompleteThrowGrenade;   //An event to be triggered when this Action completes
 
@@ -27,18 +25,13 @@ public class GrenadeAction : BaseAction
     [SerializeField] private LayerMask tileMask;    //The LayerMask used to find grenadable Tiles
     [SerializeField] private LayerMask sightMask;   //The LayerMask used to calculate line of sight
 
-    //private Tile target;
-
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
         //Call the Awake of BaseAction
         base.Awake();
-    }//end Awake
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,9 +64,8 @@ public class GrenadeAction : BaseAction
 
         //Tell the transform to point in the direction of throwing
         transform.forward = Vector3.Slerp(transform.forward, aimDirection, turnSpeed * Time.deltaTime);
-    }//end Update
+    }
 
-    #endregion //end Unity Control Methods
 
     #region
 

@@ -6,80 +6,62 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    #region Variables
-
     private bool canControl;
 
     [SerializeField] private TextMeshProUGUI versionNumberText;
 
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     void Awake()
     {
-        //
         canControl = true;
-    }//end Awake
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //
+        // Make sure the persistent scene is loaded
         if (PersistantManager.Instance == null)
         {
-            //
             SceneManager.LoadSceneAsync("PersistantScene", LoadSceneMode.Additive);
         }
 
-        //
+        // Setup the version text
         versionNumberText.text = "Ver. " + Application.version;
     }//end Start
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }//end Update
-
-    #endregion //end Unity Control Methods
-
-    #region
 
     public void Play()
     {
-        //
-        if(canControl == false)
+        // If the player can't control the game, then they can't start playing it, so return
+        if (canControl == false)
         {
             return;
         }
 
-        //
+        // Only continue if the persistent scene and manager are setup
         if(PersistantManager.Instance != null)
         {
-            //
+            // Don't let the player do anything after they've started the play process
             canControl = false;
             
-            //
+            // Load the game
             PersistantManager.Instance.LoadGameScene();
         }
     }
 
     public void Quit()
     {
-        //
+        // If the player can't control the game, then they can't quit, so return
         if (canControl == false)
         {
             return;
         }
 
-        //
+        // Don't let the player do anything after they've started the quit process
         canControl = false;
 
-        //
+        // Close the game
         Application.Quit();
     }
-
-    #endregion
 }

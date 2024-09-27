@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    #region Variables
-
     public event EventHandler OnStartMoving;
     public event EventHandler OnStopMoving;
 
@@ -19,19 +17,14 @@ public class MoveAction : BaseAction
     private Vector3 nextTilePosition;
     private Vector3 endTilePosition;
 
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
-        //
         base.Awake();
 
-        //
         endTilePosition = transform.position;
-    }//end Awake
+    }
 
     // Update is called once per frame
     void Update()
@@ -72,11 +65,7 @@ public class MoveAction : BaseAction
 
             CompleteAction();
         }
-    }//end Update
-
-    #endregion //end Unity Control Methods
-
-    #region
+    }
 
 
     public override bool TryTakeAction(ActionTarget target, Action onActionComplete)
@@ -102,14 +91,11 @@ public class MoveAction : BaseAction
             //
             TileManager.Instance.ResetTilemapPathfinding();
 
-            //
             canMove = true;
 
-            //
             StartAction(onActionComplete);
         }
 
-        //
         return canMove;
     }
 
@@ -134,17 +120,14 @@ public class MoveAction : BaseAction
 
     public List<Tile> GetWalkableTiles()
     {
-        //
         List<Tile> walkableTiles = new List<Tile>();
 
-        //
+        // Create a list of tiles that can be walked to using the action targets
         foreach(ActionTarget target in targets)
         {
-            //
             walkableTiles.Add(target.targetTile);
         }
 
-        //
         return walkableTiles;
     }
     
@@ -243,7 +226,7 @@ public class MoveAction : BaseAction
 
         //
         return path;
-    }//end CalculatePathToTile
+    }
 
 
     public override EnemyAIAction GetBestEnemyAIAction()
@@ -267,7 +250,7 @@ public class MoveAction : BaseAction
 
         //
         return validActions[0];
-    }//end GetBestEnemyAIAction
+    }
 
 
     public override EnemyAIAction GetEnemyAIAction(ActionTarget target)
@@ -281,7 +264,5 @@ public class MoveAction : BaseAction
             target = target,
             actionValue = targetCountAtTile * 10,
         };
-    }//end GetEnemyAIAction
-
-    #endregion
+    }
 }

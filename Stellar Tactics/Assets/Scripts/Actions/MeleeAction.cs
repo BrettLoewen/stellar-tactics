@@ -6,7 +6,6 @@ public class MeleeAction : BaseAction
 {
     private enum State { BeforeHit, AfterHit }
 
-    #region Variables
 
     public event EventHandler OnMeleeStart;
     public event EventHandler OnMeleeEnd;
@@ -16,21 +15,15 @@ public class MeleeAction : BaseAction
     [SerializeField] private float meleeRange = 1.5f;
     [SerializeField] private LayerMask tileMask;
 
-    //private List<Tile> targets = new List<Tile>();
-    //private Tile target;
-
     private State state;
     private float stateTimer;
 
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
         base.Awake();
-    }//end Awake
+    }
 
     // Update is called once per frame
     void Update()
@@ -48,7 +41,6 @@ public class MeleeAction : BaseAction
         switch (state)
         {
             case State.BeforeHit:
-                //
                 float turnSpeed = 10f;
 
                 //Get the direction the unit needs to attack in
@@ -67,9 +59,8 @@ public class MeleeAction : BaseAction
         {
             NextState();
         }
-    }//end Update
+    }
 
-    #endregion //end Unity Control Methods
 
     #region
 

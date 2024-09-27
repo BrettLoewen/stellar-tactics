@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class InteractAction : BaseAction
 {
-    #region Variables
-
     [SerializeField] private float interactRange = 1.5f;
     [SerializeField] private LayerMask interactableMask;
 
-    //private List<Tile> targets = new List<Tile>();
-    //private Tile target;
-
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
         base.Awake();
-    }//end Awake
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,11 +22,7 @@ public class InteractAction : BaseAction
         {
             return;
         }
-    }//end Update
-
-    #endregion //end Unity Control Methods
-
-    #region
+    }
 
 
     public override bool TryTakeAction(ActionTarget target, Action onActionComplete)
@@ -110,7 +98,7 @@ public class InteractAction : BaseAction
     {
         //Calculate and return the appropriate EnemyAIAction for the InteractAction
         return GetEnemyAIAction(new ActionTarget(unit.GetStandingTile()));
-    }//end GetBestEnemyAIAction
+    }
 
 
     public override EnemyAIAction GetEnemyAIAction(ActionTarget target)
@@ -121,7 +109,5 @@ public class InteractAction : BaseAction
             target = target,
             actionValue = 1,
         };
-    }//end GetEnemyAIAction
-
-    #endregion
+    }
 }

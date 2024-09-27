@@ -7,7 +7,6 @@ public class ShootAction : BaseAction
 {
     private enum State { Aiming, Shooting, Ending }
 
-    #region Variables
 
     public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
@@ -24,21 +23,15 @@ public class ShootAction : BaseAction
     [SerializeField] private LayerMask tileMask;
     [SerializeField] private LayerMask sightMask;
 
-    //private List<Tile> targets = new List<Tile>();
-    //private Tile target;
-
     private State state;
     private float stateTimer;
 
-    #endregion //end Variables
-
-    #region Unity Control Methods
 
     // Awake is called before Start before the first frame update
     protected override void Awake()
     {
         base.Awake();
-    }//end Awake
+    }
 
     // Update is called once per frame
     void Update()
@@ -79,9 +72,8 @@ public class ShootAction : BaseAction
         {
             NextState();
         }
-    }//end Update
+    }
 
-    #endregion //end Unity Control Methods
 
     #region
 
