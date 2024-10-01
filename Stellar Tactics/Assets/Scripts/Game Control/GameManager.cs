@@ -175,10 +175,21 @@ public class GameManager : MonoBehaviour
             if (controller.OutOfUnits())
             {
                 //Get the UnitController as a PlayerController
-                PlayerController player = (PlayerController)controller;
+                //PlayerController player = (PlayerController)controller;
+
+                ////If the UnitController was the player, the player lost
+                //if (player != null)
+                //{
+                //    EndGame(false);
+                //}
+                ////If the UnitController was not the player, the player won
+                //else
+                //{
+                //    EndGame(true);
+                //}
 
                 //If the UnitController was the player, the player lost
-                if (player != null)
+                if (controller is PlayerController)
                 {
                     EndGame(false);
                 }
