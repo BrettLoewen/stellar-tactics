@@ -17,6 +17,7 @@ public class TeamData : ScriptableObject
 
     public Material rangerMaterial;     //The material used for the Ranger Unit when it is on this team
     public Material ravagerMaterial;    //The material used for the Ravager Unit when it is on this team
+    public Material officerMaterial;    //The material used for the Officer Unit when it is on this team
 
     #endregion //end Variables
 
@@ -40,6 +41,9 @@ public class TeamData : ScriptableObject
             //If the UnitData was the Ravager UnitData, return the Ravager's material
             case "Ravager":
                 unitMaterial = ravagerMaterial;
+                break;
+            case "Officer":
+                unitMaterial = officerMaterial;
                 break;
         }
 

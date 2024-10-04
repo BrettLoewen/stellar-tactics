@@ -15,3 +15,4 @@ MonoBehaviour:
   teamColor: {r: 0.88235295, g: 0.15686275, b: 0.15686275, a: 1}
   rangerMaterial: {fileID: 2100000, guid: e14cf3e858c062d41895670ba167dc54, type: 2}
   ravagerMaterial: {fileID: 2100000, guid: 8af06f9679195194daccd067b1d63d65, type: 2}
+  officerMaterial: {fileID: 2100000, guid: d9f10f9fdc84e374f8c061f34926ecaa, type: 2}

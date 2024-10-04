@@ -34,8 +34,11 @@ public class UnitAnimator : MonoBehaviour
         unit.GetMoveAction().OnStartMoving += MoveAction_OnStartMoving;
         unit.GetMoveAction().OnStopMoving += MoveAction_OnStopMoving;
         unit.GetShootAction().OnShoot += ShootAction_OnShoot;
-        unit.GetGrenadeAction().OnStartThrowGrenade += GrenadeAction_OnStartThrowGrenade;
-        unit.GetGrenadeAction().OnCompleteThrowGrenade += GrenadeAction_OnCompleteThrowGrenade;
+        if(unit.GetGrenadeAction() != null)
+        {
+            unit.GetGrenadeAction().OnStartThrowGrenade += GrenadeAction_OnStartThrowGrenade;
+            unit.GetGrenadeAction().OnCompleteThrowGrenade += GrenadeAction_OnCompleteThrowGrenade;
+        }
         unit.GetMeleeAction().OnMeleeStart += MeleeAction_OnMeleeStart;
         unit.GetMeleeAction().OnMeleeEnd += MeleeAction_OnMeleeEnd;
 
