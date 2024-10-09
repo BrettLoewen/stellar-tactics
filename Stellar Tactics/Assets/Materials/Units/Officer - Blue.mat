@@ -111,11 +111,11 @@ Material:
     - _Skin_2_Smoothness: 0
     - _Tertiary_Smoothness: 0
     m_Colors:
-    - _Decal_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Decal_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Extra_1_Color: {r: 0.81960785, g: 0.6431373, b: 0.29803923, a: 1}
     - _Extra_2_Color: {r: 0.827451, g: 0.6745098, b: 0.38823527, a: 1}
-    - _Extra_3_Color: {r: 0.16862746, g: 0.18039216, b: 0.19215688, a: 1}
-    - _Extra_4_Color: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
+    - _Extra_3_Color: {r: 0.08627451, g: 0.08627451, b: 0.08627451, a: 1}
+    - _Extra_4_Color: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     - _Extra_5_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Extra_6_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Extra_7_Color: {r: 0, g: 0, b: 0, a: 0}

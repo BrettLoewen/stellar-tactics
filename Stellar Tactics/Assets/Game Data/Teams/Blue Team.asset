@@ -16,3 +16,4 @@ MonoBehaviour:
   rangerMaterial: {fileID: 2100000, guid: 80b7208616cc4a64ea66409913ee0cf9, type: 2}
   ravagerMaterial: {fileID: 2100000, guid: 13ba2b615a404b142b565c638ee2913d, type: 2}
   officerMaterial: {fileID: 2100000, guid: 49b9f9db8c658794daf893a5ff057672, type: 2}
+  captainMaterial: {fileID: 2100000, guid: 49b9f9db8c658794daf893a5ff057672, type: 2}
