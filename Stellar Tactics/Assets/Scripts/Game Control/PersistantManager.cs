@@ -58,17 +58,17 @@ public class PersistantManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        StartCoroutine(StartLoadingScene("SampleScene", "MainMenu"));
+        StartCoroutine(StartLoadingScene("Level1", "MainMenu"));
     }
 
     public void ReloadGameScene()
     {
-        StartCoroutine(StartLoadingScene("SampleScene", "SampleScene"));
+        StartCoroutine(StartLoadingScene("Level1", "Level1"));
     }
 
     public void LoadMenuScene()
     {
-        StartCoroutine(StartLoadingScene("MainMenu", "SampleScene"));
+        StartCoroutine(StartLoadingScene("MainMenu", "Level1"));
     }
 
     private IEnumerator StartLoadingScene(string sceneToLoad, string sceneToUnload)
