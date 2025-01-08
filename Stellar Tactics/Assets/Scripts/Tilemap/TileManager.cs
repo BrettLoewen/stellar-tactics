@@ -149,11 +149,6 @@ public class TileManager : MonoBehaviour
     [ContextMenu("Generate Tilemap")]
     private void GenerateTilemap()
     {
-        //foreach(Transform trans in transform)
-        //{
-        //    Destroy(trans.gameObject);
-        //}
-
         int childCount = transform.childCount;
         for (int i = 0; i < childCount; i++)
         {
