@@ -149,14 +149,20 @@ public class TileManager : MonoBehaviour
     [ContextMenu("Generate Tilemap")]
     private void GenerateTilemap()
     {
-        foreach(Transform trans in transform)
+        //foreach(Transform trans in transform)
+        //{
+        //    Destroy(trans.gameObject);
+        //}
+
+        int childCount = transform.childCount;
+        for (int i = 0; i < childCount; i++)
         {
-            DestroyImmediate(trans.gameObject);
+            DestroyImmediate(transform.GetChild(0).gameObject);
         }
 
         for(int i = -20; i <= 20; i += 2)
         {
-            for (int j = -20; j <= 20; j += 2)
+            for (int j = -36; j <= 36; j += 2)
             {
                 Transform tile = Instantiate(tilePrefab, transform);
                 tile.position = new Vector3(i, 0f, j);
