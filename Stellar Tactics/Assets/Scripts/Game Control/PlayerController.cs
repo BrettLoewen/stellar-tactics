@@ -83,14 +83,15 @@ public class PlayerController : UnitController
             return;
         }
 
-        //
-        HandleActionVisuals();
-
-        //
+        // Only show the visuals for actions if there is a unit selected (prevents missing reference error)
+        if (selectedUnit != null)
+        {
+            HandleActionVisuals();
+        }
 
 
         //If the mouse is over UI, do not try to select things
-        if(EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
