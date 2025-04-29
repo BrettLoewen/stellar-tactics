@@ -10,11 +10,16 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI versionNumberText;
 
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject howToPlayPanel;
+    [SerializeField] private GameObject creditsPanel;
+
 
     // Awake is called before Start before the first frame update
     void Awake()
     {
         canControl = true;
+        Main();
     }
 
     // Start is called before the first frame update
@@ -63,5 +68,42 @@ public class MainMenu : MonoBehaviour
 
         // Close the game
         Application.Quit();
+    }
+
+    public void HowToPlay()
+    {
+        // If the player can't control the game, then they can't quit, so return
+        if (canControl == false)
+        {
+            return;
+        }
+
+        mainPanel.SetActive(false);
+        howToPlayPanel.SetActive(true);
+    }
+
+    public void Credits()
+    {
+        // If the player can't control the game, then they can't quit, so return
+        if (canControl == false)
+        {
+            return;
+        }
+
+        mainPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+
+    public void Main()
+    {
+        // If the player can't control the game, then they can't quit, so return
+        if (canControl == false)
+        {
+            return;
+        }
+
+        mainPanel.SetActive(true);
+        howToPlayPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
 }
